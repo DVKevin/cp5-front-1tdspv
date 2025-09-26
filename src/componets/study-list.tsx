@@ -7,7 +7,6 @@ interface StudyListProps {
   removeStudy: (id: string) => void;
 }
 
-
 export function StudyList({ studies, removeStudy }: StudyListProps) {
   return (
     <div className="space-y-4">
@@ -19,5 +18,6 @@ export function StudyList({ studies, removeStudy }: StudyListProps) {
         />
       ))}
     </div>
+
   );
 }
