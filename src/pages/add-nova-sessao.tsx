@@ -1,6 +1,6 @@
 import { useMemo } from "react";
 import type { StudySession } from "../types/study-session";
-import { StudySessionForm } from "../components/study-session-form";
+import { StudySessionForm } from "../componets/study-session-form";
 
 interface AddNovaSessao {
   studies: StudySession[];
