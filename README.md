@@ -22,6 +22,11 @@ Este projeto é uma Single Page Application (SPA) para registrar sessões de est
     ```bash
     npm run dev
     ```
+
+    ## Otimizações (useMemo / useCallback)
+
+* **`useCallback`**: Foi aplicado no `App.tsx` nas funções `addStudySession` e `removeStudySession` para evitar recriações desnecessárias dessas funções a cada renderização, otimizando a performance dos componentes filhos que as recebem como props.
+* **`useMemo`**: Utilizado no componente `src/pages/add-nova-sessao.tsx` para calcular o total de sessões e o tempo total de estudo (`studySessionTotal` e `studyMinutes`). Isso garante que os cálculos só sejam refeitos quando a lista de `studies` for alterada.
     
 ## Link do Deploy
 
