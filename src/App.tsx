@@ -1,10 +1,17 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { Layout } from "./components/layout";
+
+import { Layout } from "./componets/layout"
 import { Home } from "./pages/home";
 import { NovaSessao } from "./pages/add-nova-sessao";
 import { NotFound } from "./pages/not-found";
-import { useCallback, useState } from "react";
+import { Suspense, lazy, useCallback, useState } from "react";
 import type { StudySession } from "./types/study-session";
+import { ErrorBoundary } from "./componets/error-boundary";
+import { StudyDetails } from "./pages/study-details";
+
+
+const Home = lazy(() => import('./pages/home').then(module => ({ default: module.Home })));
+const NovaSessao = lazy(() => import('./pages/add-nova-sessao').then(module => ({ default: module.NovaSessao })));
 
 export default function App() {
   const [studies, setStudies] = useState<StudySession[]>([]);
@@ -21,7 +28,7 @@ export default function App() {
   }, []);
 
   return (
-    <div
+   <div
       style={{
         backgroundColor: "#f0f0f0",
         minHeight: "100vh",
@@ -39,23 +46,39 @@ export default function App() {
       >
         Estilização Inline + Rotas
       </h1>
-
       <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Layout />}>
-            <Route
-              index
-              element={<Home studies={studies} removeStudy={removeStudySession} />}
-            />
-            <Route
-              path="/add"
-              element={<NovaSessao onAdd={addStudySession} studies={studies} />}
-            />
-            <Route path="*" element={<NotFound />} />
-          </Route>
-        </Routes>
-      </BrowserRouter>
-    </div>
+      <ErrorBoundary>
+        <Suspense fallback={<div className="text-center py-20">Carregando...</div>}>
+          <Routes>
+            
+            <Route path="/" element={<Layout />}>
+            
+              <Route
+                index
+                element={<Home studies={studies} removeStudy={removeStudySession} />}
+              />
+           
+              <Route
+                path="/add"
+                element={<NovaSessao onAdd={addStudySession} studies={studies} />}
+              />
+            
+              <Route
+                path="/session/:id"
+                element={<StudyDetails studies={studies} />}
+              />
+            
+              <Route path="*" element={<NotFound />} />
+            </Route>
+      
+          </Routes>
+        </Suspense>
+      </ErrorBoundary>
+    </BrowserRouter>
+
   );
 } 
+
+
+export default App;
 
