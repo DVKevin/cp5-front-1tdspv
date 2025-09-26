@@ -12,7 +12,7 @@ Este projeto é uma Single Page Application (SPA) para registrar sessões de est
 
 1.  Clone o repositório:
     ```bash
-    git clone <url-do-seu-repositorio>
+    git clone https://github.com/DVKevin/cp5-front-1tdspv
     ```
 2.  Instale as dependências:
     ```bash
