@@ -1,0 +1,44 @@
+export default function App() {
+  return (
+    <div
+      style={{
+        backgroundColor: "#f0f0f0",
+        minHeight: "100vh",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        flexDirection: "column",
+      }}
+    >
+      <h1
+        style={{
+          color: "#333",
+          fontSize: "32px",
+          marginBottom: "20px",
+        }}
+      >
+        Estilização Inline em React
+      </h1>
+
+      <button
+        style={{
+          backgroundColor: "#007BFF",
+          color: "white",
+          padding: "12px 24px",
+          border: "none",
+          borderRadius: "8px",
+          cursor: "pointer",
+          fontSize: "16px",
+        }}
+        onMouseOver={(e) =>
+          (e.currentTarget.style.backgroundColor = "#0056b3")
+        }
+        onMouseOut={(e) =>
+          (e.currentTarget.style.backgroundColor = "#007BFF")
+        }
+      >
+        Clique aqui
+      </button>
+    </div>
+  )
+}
